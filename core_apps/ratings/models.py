@@ -7,7 +7,6 @@ User = get_user_model()
 
 
 class Rating(TimeStampedModel):
-
     RATING_CHOICES = [
         (1, "Poor"),
         (2, "Fair"),
@@ -15,13 +14,14 @@ class Rating(TimeStampedModel):
         (4, "Very Good"),
         (5, "Excellent"),
     ]
-    article = models.ForeignKey(Article, related_name="ratings", on_delete=models.CASCADE)
+    article = models.ForeignKey(
+        Article, related_name="ratings", on_delete=models.CASCADE
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.PositiveSmallIntegerField(choices=RATING_CHOICES)
     review = models.TextField(blank=True)
 
     class Meta:
-
         unique_together = ("article", "user")
         verbose_name = "Rating"
         verbose_name_plural = "Ratings"

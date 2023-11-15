@@ -3,9 +3,6 @@ from .documents import ArticleDocument
 
 
 class ArticleElasticsearchSerializer(DocumentSerializer):
-
     class Meta:
-
         document = ArticleDocument
         fields = ["title", "author", "slug", "description", "body", "created_at"]
-        
