@@ -64,6 +64,11 @@ es-populate:
 es-rebuild:
 	docker compose -f local.yml exec api python3 manage.py search_index --rebuild
 
+pytest:
+	docker compose -f local.yml run --rm api pytest -p no:warnings --cov=. -v
+
+pytest_html:
+	docker compose -f local.yml run --rm api pytest -p no:warnings --cov=. --cov-report html
 
 db-backup:
 	docker compose -f local.yml exec postgres backup
